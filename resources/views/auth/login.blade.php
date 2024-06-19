@@ -1,24 +1,27 @@
 @extends('layouts.layout')
 <x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
-
+<x-authentication-card>
+        
+            
         <x-validation-errors class="mb-4" />
 
-        @session('status')
             <div class="mb-4 font-medium text-sm text-green-600">
-                {{ $value }}
+                <div class="mb-4">
+            <img src="{{ asset('user.jpg') }}" alt="Profile" class="mx-auto h-12 w-auto rounded-full mb-4">
+        </div>
             </div>
-        @endsession
+        
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
+            <div>
+                <x-label for="username" value="{{ __('Username') }}" />
+                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
+            </div>
 
             <div>
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="email" />
             </div>
 
             <div class="mt-4">
